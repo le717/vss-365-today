@@ -1,0 +1,6 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+/* Site CSS goes here */
+
+@import "tailwindcss/utilities";
