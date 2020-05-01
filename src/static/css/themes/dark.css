@@ -1,0 +1,9 @@
+.dark summary {
+  font-weight: 700;
+}
+
+.dark details {
+  @apply bg-indigo-500;
+  @apply text-white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}

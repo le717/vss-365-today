@@ -1,0 +1,21 @@
+summary {
+  @apply cursor-pointer;
+  @apply text-base;
+}
+
+details {
+  @apply px-6;
+  @apply py-4;
+  @apply mt-8;
+  @apply mb-4;
+  @apply mx-auto;
+  max-width: 50em;
+
+  @apply rounded;
+  @apply text-sm;
+}
+
+details img {
+  @apply mx-auto;
+  @apply mb-4;
+}
