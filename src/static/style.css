@@ -16,32 +16,13 @@ body.dark {
   --primary-nav-bg: #667EEA; /* tailwindcss v1.2.0 indigo-500 */
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-
-html { min-width: 320px; }
-
 body {
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-  font-family: "Noto Serif SC", serif;
-  font-size: 18px;
-  line-height: 1.6;
-  font-weight: 400;
-  color: var(--primary-text);
-  text-rendering: optimizeSpeed;
+  /* font-family: "Noto Serif SC", serif; */
 }
 
-h1, h2, h3, h4, h5, h6, label {
+h1, h2, h3 {
   font-family: var(--font-stack-header);
-  font-weight: 700;
 }
-
-strong { font-weight: 700; }
 
 a,
 .nav-link {
@@ -83,8 +64,6 @@ header #site-title { display: inline; }
 
 header #vss365 {
   font-family: var(--font-stack-header);
-  font-size: 1.2em;
-  font-weight: 700;
 }
 
 header #today {
@@ -140,27 +119,6 @@ section {
 
 .tweet a { font-size: 0.8em; }
 
-details {
-  padding: 1em 1.5em;
-  max-width: 50em;
-  margin: 2em auto 1em auto;
-
-  background-color: var(--details-bg);
-  border-radius: 3px;
-  font-size: 0.8em;
-}
-
-summary {
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-details img {
-  margin-right: auto;
-  margin-bottom: 1em;
-  margin-left: auto;
-}
-
 footer {
   padding: 0.5em;
   padding-bottom: 1em;
@@ -183,8 +141,6 @@ footer > div {
 }
 
 .page { width: 65%; }
-.page h3,
-.page h4 { margin-bottom: -0.5em; }
 
 .btns-prev-next {
   text-align: center;
@@ -437,16 +393,6 @@ button:focus { background-color: #e9e9e9; }
   border-color: transparent;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   filter: opacity(0.85);
-}
-
-.dark summary {
-  font-weight: 700;
-}
-
-.dark details {
-  background-color: var(--primary-nav-bg);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  color: #fff;
 }
 
 .dark .a-btn:hover,
