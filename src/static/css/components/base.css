@@ -4,7 +4,7 @@ body {
 
   @apply flex;
   @apply flex-col;
-  @apply max-h-screen;
+  @apply min-h-screen;
 
   @apply text-lg;
   @apply font-body;
