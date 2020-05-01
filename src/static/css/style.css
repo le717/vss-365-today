@@ -2,5 +2,17 @@
 @import "tailwindcss/components";
 
 /* Site CSS goes here */
+@import "../style.css";
+
+
+@import "components/base.css";
+@import "components/headings.css";
+@import "components/inputs.css";
+@import "components/summary.css";
+
+
+/* Site themes */
+@import "themes/dark.css";
+@import "themes/light.css";
 
 @import "tailwindcss/utilities";
