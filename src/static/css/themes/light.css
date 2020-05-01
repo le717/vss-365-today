@@ -1,3 +1,7 @@
+body.light {
+  color: var(--primary-text)
+}
+
 .light details {
   @apply bg-gray-300;
 }

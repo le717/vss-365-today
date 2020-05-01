@@ -12,6 +12,12 @@ module.exports = {
       fontFamily: {
         custom: [
           ...defaultTheme.fontFamily.sans
+        ],
+        body: [
+          "Noto Serif SC", ...defaultTheme.fontFamily.serif
+        ],
+        header: [
+          "Josefin Slab", "Noto Serif SC", ...defaultTheme.fontFamily.serif
         ]
       },
     },

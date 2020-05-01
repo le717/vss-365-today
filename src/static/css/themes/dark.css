@@ -1,3 +1,7 @@
+body.dark {
+  color: var(--primary-text);
+}
+
 .dark summary {
   font-weight: 700;
 }
