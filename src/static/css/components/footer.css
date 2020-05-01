@@ -1,0 +1,10 @@
+footer {
+  @apply p-2;
+  @apply pb-4;
+  @apply text-center;
+}
+
+footer > div {
+  @apply mt-4;
+  @apply text-sm;
+}
