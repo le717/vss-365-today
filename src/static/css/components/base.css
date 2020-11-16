@@ -19,3 +19,8 @@ p {
 strong {
   @apply font-bold;
 }
+
+img {
+  @apply max-w-full;
+  @apply h-auto;
+}
