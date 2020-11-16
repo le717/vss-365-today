@@ -10,6 +10,8 @@ body {
   @apply font-body;
   @apply font-normal;
   @apply leading-relaxed;
+
+  color: var(--primary-text);
 }
 
 p {

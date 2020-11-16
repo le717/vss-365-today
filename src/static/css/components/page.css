@@ -1,0 +1,15 @@
+.page {
+  @apply w-2/3;
+}
+
+.page h3,
+.page h4 {
+  @apply -mb-2;
+}
+
+.browse-page > .wrapper {
+  @apply text-center;
+}
+.browse-page > .wrapper h2 {
+  @apply mb-0;
+}

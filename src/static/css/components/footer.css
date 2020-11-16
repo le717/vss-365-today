@@ -2,6 +2,12 @@ footer {
   @apply p-2;
   @apply pb-4;
   @apply text-center;
+
+  background-color: var(--body-background-accent);
+}
+
+footer a {
+  color: inherit;
 }
 
 footer > div {

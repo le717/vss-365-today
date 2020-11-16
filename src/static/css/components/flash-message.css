@@ -1,0 +1,63 @@
+.msg-flash-area {
+  @apply w-full;
+  @apply fixed;
+  @apply top-0;
+
+  z-index: 3;
+}
+
+.msg-flash {
+  display: flex;
+  align-items: center;
+
+  width: 25%;
+  height: 5.5rem;
+
+  padding: 1.7rem 0.75rem;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  position: relative;
+  border-radius: 3px;
+
+  font-size: 0.95rem;
+
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.msg-flash.hidden {
+  @apply opacity-0;
+}
+
+.msg-flash.info {
+  background-color: var(--details-bg);
+  @apply shadow-md;
+  @apply text-black;
+}
+
+.msg-flash.error {
+  @apply bg-orange-300;
+  @apply shadow-md;
+  @apply text-black;
+}
+
+.msg-flash p {
+  @apply p-0;
+  @apply m-0;
+}
+
+.msg-flash .btn-close {
+  height: inherit;
+  margin-left: auto;
+  flex: none;
+
+  filter: invert(0.2);
+  transition: filter 0.2s ease;
+  cursor: pointer;
+}
+.msg-flash .btn-close:hover,
+.msg-flash .btn-close:focus {
+  filter: invert(0.4);
+}

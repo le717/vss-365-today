@@ -17,10 +17,6 @@ body.dark {
   --primary-nav-bg: #667eea; /* tailwindcss v1.2.0 indigo-500 */
 }
 
-body {
-  color: var(--primary-text);
-}
-
 a,
 .nav-link {
   text-decoration: none;
@@ -140,22 +136,6 @@ details img {
   margin-left: auto;
 }
 
-footer {
-  padding: 0.5em;
-  padding-bottom: 1em;
-  text-align: center;
-  background-color: var(--body-background-accent);
-}
-
-footer a {
-  color: inherit;
-}
-
-footer > div {
-  margin-top: 1em;
-  font-size: 0.95rem;
-}
-
 .left {
   text-align: left;
 }
@@ -168,14 +148,6 @@ footer > div {
   margin-left: auto;
 }
 
-.page {
-  width: 65%;
-}
-.page h3,
-.page h4 {
-  margin-bottom: -0.5em;
-}
-
 .btns-prev-next {
   text-align: center;
   margin-top: 1.2em;
@@ -186,34 +158,6 @@ footer > div {
   font-family: var(--font-stack-header);
   font-weight: 400;
   font-size: 1.2em;
-}
-
-.content .prompt-highlight {
-  font-family: "Bad Script", "Karla", serif;
-  font-size: 1.5em;
-  font-weight: 400;
-}
-
-.content > .word-wrapper {
-  margin-top: -1.5em;
-}
-
-.content .word {
-  line-height: 1.75;
-  font-size: 2.75em;
-  font-weight: 700;
-  color: inherit;
-  text-decoration-style: dashed;
-  text-decoration-line: underline;
-  text-decoration-color: #d1caca;
-  text-transform: lowercase;
-  transition: 0.2s text-decoration-color ease;
-}
-.content .word:hover,
-.content .word:focus,
-.content .word:active {
-  border-bottom-color: transparent;
-  text-decoration-color: inherit;
 }
 
 .commas:not(:last-of-type)::after {
@@ -236,13 +180,6 @@ footer > div {
   border-radius: 0;
   border-color: transparent;
   border-bottom-color: currentColor;
-}
-
-.browse-page > .wrapper {
-  text-align: center;
-}
-.browse-page > .wrapper h2 {
-  margin-bottom: 0em;
 }
 
 .browse-giver .wrapper,
@@ -377,75 +314,6 @@ button:focus {
 
 .tail-select .select-dropdown ul li {
   font-size: 0.85rem;
-}
-
-/* --- Flash messages --- */
-.msg-flash-area {
-  width: 100%;
-  position: fixed;
-  top: 0;
-
-  z-index: 3;
-}
-
-.msg-flash {
-  display: flex;
-  align-items: center;
-
-  width: 25%;
-  height: 5.5rem;
-
-  padding: 1.7rem 0.75rem;
-
-  margin-right: auto;
-  margin-left: auto;
-
-  position: relative;
-  border-radius: 3px;
-
-  font-size: 0.95rem;
-
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
-.msg-flash.hidden {
-  opacity: 0;
-}
-
-.msg-flash.info {
-  background-color: var(--details-bg);
-  /* tailwindcss v1.2.0 shadow-md */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  color: black;
-}
-
-.msg-flash.error {
-  background-color: #fbd38d; /* tailwindcss v1.2.0 orange-300 */
-  /* tailwindcss v1.2.0 shadow-md */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  color: black;
-}
-
-.msg-flash p {
-  padding: 0;
-  margin: 0;
-}
-
-.msg-flash .btn-close {
-  height: inherit;
-  margin-left: auto;
-  flex: none;
-
-  filter: invert(0.2);
-  transition: filter 0.2s ease;
-  cursor: pointer;
-}
-.msg-flash .btn-close:hover,
-.msg-flash .btn-close:focus {
-  filter: invert(0.4);
 }
 
 /* -- Dark theme --*/

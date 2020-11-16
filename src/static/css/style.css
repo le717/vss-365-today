@@ -4,16 +4,16 @@
 /* Site CSS goes here */
 @import "../style.css";
 
-
 @import "components/base.css";
 @import "components/footer.css";
 @import "components/headings.css";
 @import "components/inputs.css";
 @import "components/summary.css";
 
-
+@import "components/page.css";
 @import "components/content.css";
 
+@import "components/flash-message.css";
 
 /* Site themes */
 @import "themes/dark.css";

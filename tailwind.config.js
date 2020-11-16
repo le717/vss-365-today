@@ -7,7 +7,7 @@ module.exports = {
     "./src/templates/**/*.jinja2"
   ],
   future: {
-    purgeLayersByDefault: true,
+    purgeLayersByDefault: true
   },
   theme: {
     extend: {
