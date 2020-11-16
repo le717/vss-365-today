@@ -3,12 +3,9 @@
     "API_DOMAIN"
   ],
   "secrets": [
-    "SECRET_KEY",
-    "JWT_SECRET_KEY",
-    "TWITTER_APP_KEY",
-    "TWITTER_APP_SECRET",
-    "TWITTER_KEY",
-    "TWITTER_SECRET"
+    "SECRET_KEY_WEB",
+    "ABUSE_EMAIL_ADDR",
+    "API_AUTH_TOKEN"
   ],
   "appConfig": {
     "APP_NAME": "#vss365 today",

@@ -1,15 +1,12 @@
-  # #vss365 today
+# #vss365 today
 
 > Get the latest #vss365 prompt
 
-
 ## Required Configuration
 
-* Running instance of [#vss365 today API](https://github.com/le717/vss365-today-api/) (domain configurable)
-* Flask secret key
-* JWT secret key
-* Twitter Consumer API keys
-* Twitter access token & access token secret
+- Running instance of [#vss365 today API](https://github.com/le717/vss365today-api/) (domain configurable)
+  - API key for protected endpoint access
+- Flask secret key
 
 ## Install
 
@@ -21,7 +18,7 @@
 
 ## Build
 
-1. `docker build -f "docker/Dockerfile" -t vss365-today:latest .`
+1. `docker build -f "docker/Dockerfile" -t vss365today-web:latest .`
 
 ## License
 

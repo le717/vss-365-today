@@ -1,18 +1,15 @@
 {% extends 'base.html' %}
-{% set page_title = date ~ ' prompts from ' ~ host %}
+{% set page_title = date ~ ' prompts' %}
 
 {% block content %}
 <section class="page center browse-giver">
-  {% if not month_prompts -%}
-  <h2>No #vss365 prompts from {{ host }} for {{ date }} were found!</h2>
-
-  {%- else %}
   <div class="wrapper">
     {%- for prompt in month_prompts %}
     {% set prompt_date = prompt.date|create_api_date %}
     <dl>
       <dd><a href="{{ url_for('root.view_date', date=prompt_date|format_datetime) }}">{{ prompt.word }}</a></dd>
       <dt>{{ prompt_date|format_date_pretty }}</dt>
+      <dt>{{ prompt.writer_handle }}</dt>
     </dl>
     {%- if loop.index % 5 == 0 %}
   </div>
@@ -21,6 +18,5 @@
     {%- endif %}
     {%- endfor %}
   </div>
-  {%- endif %}
 </section>
 {% endblock %}

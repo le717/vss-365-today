@@ -2,12 +2,13 @@ from flask import abort, flash, redirect, render_template, request, url_for
 from requests.exceptions import HTTPError
 
 from src.blueprint import bp_root as root
-from src.core import api, filters
-from src.core.form import SubscribeForm, UnsubscribeForm
-from src.core.helpers import group_month_list_of_hosts
+from src.core import api
+from src.core.filters import date as date_format
+from src.core.forms import SubscribeForm, UnsubscribeForm
+from src.core.helpers import get_unique_year_months
 
 
-@root.route("/subscribe", methods=["POST"])
+@root.route("subscribe", methods=["POST"])
 def subscribe():
     # Attempt to record the email
     email = request.form.get("email")
@@ -20,14 +21,12 @@ def subscribe():
             "Please try again shortly.",
             "error",
         )
-
     return redirect(url_for("root.index"))
 
 
-@root.route("/form-unsubscribe", methods=["POST"])
+@root.route("form-unsubscribe", methods=["POST"])
 def form_unsubscribe():
     # Attempt to delete the email
-    # TODO What if we don't get an email here?
     email = request.form.get("email")
     try:
         api.delete("subscription", params={"email": email})
@@ -35,14 +34,14 @@ def form_unsubscribe():
         return redirect(url_for("root.index"))
     except HTTPError:
         flash(
-            f"We were unable to remove {email} to the subscription list. "
+            f"We were unable to remove {email} from the subscription list. "
             "Please try again shortly.",
             "error",
         )
         return redirect(url_for("root.unsubscribe"))
 
 
-@root.route("/unsubscribe", methods=["GET"])
+@root.route("unsubscribe", methods=["GET"])
 def unsubscribe():
     render_opts = {
         "form_subscribe": SubscribeForm(),
@@ -51,42 +50,45 @@ def unsubscribe():
     return render_template("root/unsubscribe.html", **render_opts)
 
 
-@root.route("/about")
+@root.route("about")
 def about():
     render_opts = {"form_subscribe": SubscribeForm()}
     return render_template("root/about.html", **render_opts)
 
 
-@root.route("/browse")
+@root.route("browse")
 def browse():
-    prompt_years = api.get("browse", "years")
-    render_opts = {"form_subscribe": SubscribeForm(), "years": prompt_years}
-    return render_template("root/browse.html", **render_opts)
-
-
-@root.route("/browse/<year>")
-def browse_by_year(year: str):
-    # Get the host's list and group them up if needed
+    # Handle the archive file possibly being unavailable
     try:
-        hosts_in_year: dict = api.get("browse", params={"year": year})
+        archive_name = api.get("archive")
     except HTTPError:
-        abort(404)
-
-    grouped_groups = (
-        group_month_list_of_hosts(hosts_in_year["hosts"])
-        if hosts_in_year["query"] == "2017"
-        else hosts_in_year["hosts"]
-    )
+        archive_name = False
 
     render_opts = {
         "form_subscribe": SubscribeForm(),
-        "hosts": grouped_groups,
+        "years": api.get("browse", "years"),
+        "archive": archive_name,
+    }
+    return render_template("root/browse.html", **render_opts)
+
+
+@root.route("browse/<year>")
+def browse_by_year(year: str):
+    # Get the host's list and group them up if needed
+    try:
+        year_hosts: dict = api.get("browse", params={"year": year})
+    except HTTPError:
+        abort(404)
+
+    render_opts = {
+        "form_subscribe": SubscribeForm(),
+        "dates": get_unique_year_months(year_hosts["hosts"]),
         "year": year,
     }
     return render_template("root/browse-year.html", **render_opts)
 
 
-@root.route("/browse/<year>/<month>")
+@root.route("browse/<year>/<month>")
 def browse_by_year_month(year: str, month: str) -> str:
     try:
         month_prompts: dict = api.get("browse", params={"year": year, "month": month})
@@ -95,14 +97,13 @@ def browse_by_year_month(year: str, month: str) -> str:
 
     render_opts = {
         "form_subscribe": SubscribeForm(),
-        "date": filters.format_month_year(f"{year}-{month}"),
+        "date": date_format.format_month_year(f"{year}-{month}-01"),
         "month_prompts": month_prompts["prompts"],
-        "host": ", ".join(host["handle"] for host in month_prompts["hosts"]),
     }
-    return render_template("root/browse-host.html", **render_opts)
+    return render_template("root/browse-month.html", **render_opts)
 
 
-@root.route("/donate")
+@root.route("donate")
 def donate():
     render_opts = {"form_subscribe": SubscribeForm()}
     return render_template("root/donate.html", **render_opts)
@@ -110,9 +111,14 @@ def donate():
 
 @root.route("/")
 def index():
-    # Get the latest prompt and go ahead and make a proper date object
-    prompts = api.get("prompt")
-    prompts[0]["date"] = filters.create_api_date(prompts[0]["date"])
+    # Create a proper date object for each prompt
+    # There are some older days that have multiple prompts,
+    # and we need to handle these special cases
+    available_prompts = api.get("prompt")
+    prompts = []
+    for prompt in available_prompts:
+        prompt["date"] = date_format.create_api_date(prompt["date"])
+        prompts.append(prompt)
 
     render_opts = {
         "prompts": prompts,
@@ -123,12 +129,12 @@ def index():
     return render_template("root/tweet.html", **render_opts)
 
 
-@root.route("/view/<date>")
+@root.route("view/<date>")
 def view_date(date: str):
     # Try to get the prompt for this day
     try:
-        api_prompts = api.get(
-            "prompt", params={"date": str(filters.create_datetime(date))}
+        available_prompts = api.get(
+            "prompt", params={"date": str(date_format.create_datetime(date))}
         )
 
     # There is no prompt for this day
@@ -139,8 +145,8 @@ def view_date(date: str):
     # There are some older days that have multiple prompts,
     # and we need to handle these special cases
     prompts = []
-    for prompt in api_prompts:
-        prompt["date"] = filters.create_api_date(prompt["date"])
+    for prompt in available_prompts:
+        prompt["date"] = date_format.create_api_date(prompt["date"])
         prompts.append(prompt)
 
     render_opts = {
