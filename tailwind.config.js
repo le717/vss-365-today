@@ -6,6 +6,9 @@ module.exports = {
     "./src/templates/**/*.html",
     "./src/templates/**/*.jinja2"
   ],
+  future: {
+    purgeLayersByDefault: true,
+  },
   theme: {
     extend: {
       colors: {},
@@ -14,10 +17,10 @@ module.exports = {
           ...defaultTheme.fontFamily.sans
         ],
         body: [
-          "Noto Serif SC", ...defaultTheme.fontFamily.serif
+          "Karla", ...defaultTheme.fontFamily.sans
         ],
         header: [
-          "Josefin Slab", "Noto Serif SC", ...defaultTheme.fontFamily.serif
+          "Josefin Slab", "Karla", ...defaultTheme.fontFamily.sans
         ]
       },
     },
